@@ -15,8 +15,10 @@
 
   <body>
     <header class="header">
-      <img src="logo.png" alt="Today I Learned Logo" height="68" width="68">
-      <h1>Today I Learned</h1>
+      <div class="logo">
+        <img src="logo.png" alt="Today I Learned Logo" height="68" width="68">
+        <h1>Today I Learned</h1>
+      </div>
       <button>Share a fact</button>
     </header>
 
@@ -32,7 +34,7 @@
       <button>Post</button>
     </form>
 
-    <main>
+    <main class="main">
       <aside>
         <ul>
           <li><button>All</button></li>
@@ -46,9 +48,9 @@
           <li class="fact">
             <p>React is being developed by Meta (formerly facebook)
               <a href="https://opensource.fb.com/" target="_blank">(Source)</a>
-              <span class="tag" style="background-color: #3b82f6;">#Technology#</span>
             </p>
-            <div>
+            <span class="tag" style="background-color: #3b82f6;">#Technology#</span>
+            <div class="vote-buttons">
               <button>👍 <strong>24</strong></button>
               <button>🤯 <strong>9</strong></button>
               <button>⛔️ <strong>4</strong></button>
@@ -58,14 +60,12 @@
           <li class="fact">
             <p>
               Millennial dads spend 3 times as much time with their kids than their fathers spent with them. In 1982,
-              43%
-              of
-              fathers had never changed a diaper. Today, that number is down to 3%
+              43% of fathers had never changed a diaper. Today, that number is down to 3%
               <a href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
                 target="_blank">(Source)</a>
-              <span class="tag" style="background-color: #eab308;">#Society#</span>
             </p>
-            <div>
+            <span class="tag" style="background-color: #eab308;">#Society#</span>
+            <div class="vote-buttons">
               <button>👍 <strong>11</strong></button>
               <button>🤯 <strong>2</strong></button>
               <button>⛔️ <strong>0</strong></button>
