@@ -45,6 +45,8 @@ const initialFacts = [
 
 // LINK TO APP SAMPLE DATA: https://docs.google.com/spreadsheets/d/1eeldcA_OwP4DHYEvjG0kDe0cRys-cDPhc_E9P9G1e3I/edit#gid=0
 
-// LINKto Supabase DB: https://hblvjautrtyzfvjrfmxv.supabase.co/rest/v1/facts
+// LINK to Supabase DB: 'https://hblvjautrtyzfvjrfmxv.supabase.co/rest/v1/facts?select=id'
+
+// apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhibHZqYXV0cnR5emZ2anJmbXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ2Mjg3ODQsImV4cCI6MjAwMDIwNDc4NH0.KU-5Fzc3X0EWE3i7ZhSxKcgbPOvOwL8rTDx-c0f307Q'
 
 // 👍 🤯 ⛔️
