@@ -17,6 +17,7 @@ const factsList = document.querySelector('.facts-list');
 // Create new DOM Elements – Render facts in list
 factsList.innerHTML = '';
 
+// Return correct category color
 const getCategoryColor = function (category) {
   return CATEGORIES.find(cat => cat.name === category).color;
 };
