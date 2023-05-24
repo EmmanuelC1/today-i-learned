@@ -1,5 +1,6 @@
-import './style.css';
+import { useState } from 'react';
 import ConfigData from './config/config.json';
+import './style.css';
 
 const initialFacts = [
   {
@@ -36,23 +37,12 @@ const initialFacts = [
 ];
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
-      {/* HEADER */}
-      <header className="header">
-        <div className="logo">
-          <img
-            src="logo.png"
-            alt="Today I Learned Logo"
-            height="68"
-            width="68"
-          />
-          <h1>Today I Learned</h1>
-        </div>
-        <button className="btn btn-large btn-share-fact">Share a fact</button>
-      </header>
-
-      <NewFactForm />
+      <Header showForm={showForm} setShowForm={setShowForm} />
+      {showForm ? <NewFactForm /> : null}
 
       <main className="main">
         <CategoryFilter />
@@ -62,8 +52,25 @@ function App() {
   );
 }
 
+function Header({ showForm, setShowForm }) {
+  return (
+    <header className="header">
+      <div className="logo">
+        <img src="logo.png" alt="Today I Learned Logo" height="68" width="68" />
+        <h1>Today I Learned</h1>
+      </div>
+      <button
+        className="btn btn-large btn-share-fact"
+        onClick={() => setShowForm(show => !show)}
+      >
+        {showForm ? 'Close' : 'Share a fact'}
+      </button>
+    </header>
+  );
+}
+
 function NewFactForm() {
-  return <form className="fact-form">Fact form</form>;
+  return <form className="fact-form">Fact Form</form>;
 }
 
 function CategoryFilter() {
