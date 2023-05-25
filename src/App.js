@@ -38,15 +38,18 @@ const initialFacts = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [facts, setFacts] = useState(initialFacts);
 
   return (
     <>
       <Header showForm={showForm} setShowForm={setShowForm} />
-      {showForm ? <NewFactForm /> : null}
+      {showForm ? (
+        <NewFactForm setFacts={setFacts} setShowForm={setShowForm} />
+      ) : null}
 
       <main className="main">
         <CategoryFilter />
-        <FactList />
+        <FactList facts={facts} />
       </main>
     </>
   );
@@ -69,15 +72,47 @@ function Header({ showForm, setShowForm }) {
   );
 }
 
-function NewFactForm() {
+const isValidHttpUrl = function (string) {
+  let url;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
+};
+
+function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState('');
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState('https://google.com');
   const [category, setCategory] = useState('');
   const textLength = text.length;
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(text, source, category);
+
+    // Validate data. If so, create new fact
+    if (text && isValidHttpUrl(source) && category && textLength <= 200) {
+      // Create a new fact object
+      const newFact = {
+        id: Math.round(Math.random() * 1000000),
+        text,
+        source,
+        category,
+        votesInteresting: 0,
+        votesMindblowing: 0,
+        votesFalse: 0,
+        createdIn: new Date().getFullYear(),
+      };
+
+      // Add new fact to the UI (state)
+      setFacts(facts => [newFact, ...facts]);
+    }
+
+    // Close form
+    setShowForm(false);
   };
 
   return (
@@ -131,10 +166,7 @@ function CategoryFilter() {
   );
 }
 
-function FactList() {
-  // Temporary
-  const facts = initialFacts;
-
+function FactList({ facts }) {
   return (
     <section>
       <ul className="facts-list">
