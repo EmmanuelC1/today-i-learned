@@ -6,20 +6,27 @@ import './style.css';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Fetch facts from Supabase DB
     const getFacts = async () => {
       try {
-        const { data: facts, error } = await supabase.from('facts').select('*');
+        setIsLoading(true);
+        const { data: facts, error } = await supabase
+          .from('facts')
+          .select('*')
+          .order('votesInteresting', { ascending: false })
+          .limit(1000);
 
         if (error)
           throw new Error(
             `Failed to read from database: ${error.message}. ${error.hint}`
           );
 
-        // Update facts state
+        // Update facts state & setIsLoading to false
         setFacts(facts);
+        setIsLoading(false);
       } catch (err) {
         console.error(err.message);
       }
@@ -36,10 +43,14 @@ function App() {
 
       <main className="main">
         <CategoryFilter />
-        <FactList facts={facts} />
+        {isLoading ? <Loading /> : <FactList facts={facts} />}
       </main>
     </>
   );
+}
+
+function Loading() {
+  return <p className="loading-message">Loading...</p>;
 }
 
 function Header({ showForm, setShowForm }) {
