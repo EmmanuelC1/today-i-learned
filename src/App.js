@@ -48,7 +48,11 @@ function App() {
 
       <main className="main">
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {isLoading ? <Loading /> : <FactList facts={facts} />}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <FactList facts={facts} setFacts={setFacts} />
+        )}
       </main>
     </>
   );
@@ -193,7 +197,7 @@ function CategoryFilter({ setCurrentCategory }) {
   );
 }
 
-function FactList({ facts }) {
+function FactList({ facts, setFacts }) {
   if (facts.length === 0) {
     return (
       <p className="message">
@@ -206,7 +210,7 @@ function FactList({ facts }) {
     <section>
       <ul className="facts-list">
         {facts.map(fact => (
-          <Fact key={fact.id} fact={fact} />
+          <Fact key={fact.id} fact={fact} setFacts={setFacts} />
         ))}
       </ul>
       <p>There are {facts.length} facts in the database. Add your own!</p>
@@ -214,7 +218,25 @@ function FactList({ facts }) {
   );
 }
 
-function Fact({ fact }) {
+function Fact({ fact, setFacts }) {
+  const handleVote = async function () {
+    try {
+      const { data: updatedFact, error } = await supabase
+        .from('facts')
+        .update({ votesInteresting: fact.votesInteresting + 1 })
+        .eq('id', fact.id)
+        .select();
+
+      if (error) throw new Error('Error updating vote');
+
+      setFacts(facts =>
+        facts.map(f => (f.id === fact.id ? updatedFact[0] : f))
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
     <li className="fact">
       <p>
@@ -239,7 +261,7 @@ function Fact({ fact }) {
         {fact.category}
       </span>
       <div className="vote-buttons">
-        <button>👍 {fact.votesInteresting}</button>
+        <button onClick={handleVote}>👍 {fact.votesInteresting}</button>
         <button>🤯 {fact.votesMindblowing}</button>
         <button>⛔️ {fact.votesFalse}</button>
       </div>
