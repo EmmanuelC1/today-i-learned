@@ -104,7 +104,7 @@ function NewFactForm({ setFacts, setShowForm }) {
 
       // Validate data. If so, create new fact
       if (text && isValidHttpUrl(source) && category && textLength <= 200) {
-        // Disable form inputs
+        // Disable form inputs - avoids spamming
         setIsUploading(true);
 
         // Insert new row in Supabase DB and receive the new fact object
@@ -219,13 +219,21 @@ function FactList({ facts, setFacts }) {
 }
 
 function Fact({ fact, setFacts }) {
-  const handleVote = async function () {
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleVote = async function (columnName) {
     try {
+      // Disable voting button - avoids spamming
+      setIsUpdating(true);
+
       const { data: updatedFact, error } = await supabase
         .from('facts')
-        .update({ votesInteresting: fact.votesInteresting + 1 })
+        .update({ [columnName]: fact[columnName] + 1 })
         .eq('id', fact.id)
         .select();
+
+      // Enable voting button
+      setIsUpdating(false);
 
       if (error) throw new Error('Error updating vote');
 
@@ -261,9 +269,21 @@ function Fact({ fact, setFacts }) {
         {fact.category}
       </span>
       <div className="vote-buttons">
-        <button onClick={handleVote}>👍 {fact.votesInteresting}</button>
-        <button>🤯 {fact.votesMindblowing}</button>
-        <button>⛔️ {fact.votesFalse}</button>
+        <button
+          onClick={() => handleVote('votesInteresting')}
+          disabled={isUpdating}
+        >
+          👍 {fact.votesInteresting}
+        </button>
+        <button
+          onClick={() => handleVote('votesMindblowing')}
+          disabled={isUpdating}
+        >
+          🤯 {fact.votesMindblowing}
+        </button>
+        <button onClick={() => handleVote('votesFalse')} disabled={isUpdating}>
+          ⛔️ {fact.votesFalse}
+        </button>
       </div>
     </li>
   );
