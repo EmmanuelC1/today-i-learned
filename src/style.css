@@ -65,6 +65,7 @@ body {
 section {
     /* For scrolling facts list */
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 /* ELEMENTS */
