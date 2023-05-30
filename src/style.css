@@ -8,7 +8,7 @@ body {
     background-color: #292524;
     color: #fafaf9;
     font-family: 'Sono', sans-serif;
-    padding: 48px 64px;
+    padding: 48px 64px 0px;
 }
 
 .hidden {
@@ -21,6 +21,10 @@ body {
     font-size: 24px;
     font-weight: 600;
     margin-top: 24px;
+}
+
+.number-facts {
+    margin-bottom: 16px;
 }
 
 .disputed {
@@ -46,6 +50,9 @@ body {
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: 48px;
+
+    /* For scrolling facts list */
+    height: calc(100vh - 48px - 68px - 40px);
 }
 
 @media (max-width: 900px) {
@@ -53,6 +60,11 @@ body {
         grid-template-columns: 1fr;
         height: auto;
     }
+}
+
+section {
+    /* For scrolling facts list */
+    overflow: scroll;
 }
 
 /* ELEMENTS */
