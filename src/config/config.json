@@ -8,5 +8,9 @@
     { "name": "health", "color": "#14b8a6" },
     { "name": "history", "color": "#f97316" },
     { "name": "news", "color": "#8b5cf6" }
-  ]
+  ],
+  "API": {
+    "URL": "https://hblvjautrtyzfvjrfmxv.supabase.co",
+    "KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhibHZqYXV0cnR5emZ2anJmbXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ2Mjg3ODQsImV4cCI6MjAwMDIwNDc4NH0.KU-5Fzc3X0EWE3i7ZhSxKcgbPOvOwL8rTDx-c0f307Q"
+  }
 }
