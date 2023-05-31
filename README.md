@@ -16,12 +16,21 @@ Today I Learned is responsive React web application that was used to begin my Re
    npm install
    ```
 3. Sign up for Supabase and make a new database called `facts`
-4. Enter your API URL and KEY in `config.json`
-5. Run Applicaiton
+4. Set up `facts` table with the following fields:
+   - id
+   - created_at
+   - text
+   - source
+   - category
+   - votesInteresting
+   - votesMindblowing
+   - votesFalse
+5. Enter your unique API URL and KEY in `config.json`
+6. Run Applicaiton
    ```
    npm start
    ```
-6. Open browser at <http://localhost:3000>
+7. Open browser at <http://localhost:3000>
 
 # TODO
 
