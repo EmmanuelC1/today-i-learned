@@ -8,31 +8,43 @@ import NewFactForm from './components/form/newFactForm';
 import CategoryFilter from './components/categories/categoryFilter';
 import Loading from './components/loading/loading';
 import FactList from './components/facts/factList';
+import RenderError from './components/error/renderError';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCategory, setCurrentCategory] = useState('all');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
-    const getFacts = async function () {
+    const getFacts = async () => {
       try {
         setIsLoading(true);
 
         // Fetch facts from Supabase DB by filtered bu the active category btn
         const data = await fetchFacts(currentCategory);
-
         // Update facts state if any facts fetched
         if (data) setFacts(data);
-
-        setIsLoading(false);
       } catch (err) {
-        console.error(err.message);
+        // setting error message in state to later render error component
+        setErrorMessage(err.message);
       }
+      setIsLoading(false);
     };
     getFacts();
   }, [currentCategory]);
+
+  // Conditionally renders components (Loading, RenderError, FactList) based on state
+  const renderComponent = () => {
+    if (isLoading) {
+      return <Loading />;
+    } else if (errorMessage) {
+      return <RenderError errorMessage={errorMessage} />;
+    } else {
+      return <FactList facts={facts} setFacts={setFacts} />;
+    }
+  };
 
   return (
     <>
@@ -43,11 +55,7 @@ function App() {
 
       <main className="main">
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <FactList facts={facts} setFacts={setFacts} />
-        )}
+        {renderComponent()}
       </main>
     </>
   );
