@@ -42,7 +42,7 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         setFacts(facts => [...newFact, ...facts]);
       } else {
         throw new Error(
-          `Error with input format. All fields are required. Double check that source URL includes full path (e.g. 'https://google.com')`
+          `Wrong input format. All fields are required. Double check that source URL includes full path (e.g. 'https://google.com')`
         );
       }
     } catch (err) {

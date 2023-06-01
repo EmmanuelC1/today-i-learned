@@ -40,7 +40,12 @@ function App() {
     if (isLoading) {
       return <Loading />;
     } else if (errorMessage) {
-      return <RenderError errorMessage={errorMessage} />;
+      return (
+        <RenderError
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+        />
+      );
     } else {
       return <FactList facts={facts} setFacts={setFacts} />;
     }
