@@ -36,11 +36,11 @@ Today I Learned is responsive React web application that was used to begin my Re
 
 Features I would like to implement:
 
-- [ ] Add a new React Component that renders an error message on the screen instead of logging it to the console.
-  - [ ] When users don't have all the required fields when sharing new fact
-  - [ ] Source url is not correctly formatted
+- [x] Add a new React Component that renders an error message on the screen instead of logging it to the console.
+  - [x] When users don't have all the required fields when sharing new fact
+  - [x] Source url is not correctly formatted
   - [x] Error loading facts from database
-  - [ ] Error uploading facts to database
+  - [x] Error uploading facts to database
 - [ ] Add ability to delete a fact from the database
 - [ ] Add date created to facts posts
 - [ ] Add ability to sort facts list by date created
