@@ -5,7 +5,7 @@ import supabase from '../../database/supabase';
 import ConfigData from '../../config/config.json';
 import isValidHttpUrl from '../../utils/validateHttpUrl';
 
-export default function NewFactForm({ setFacts, setShowForm }) {
+export default function NewFactForm({ setFacts, setShowForm, setFormError }) {
   const [text, setText] = useState('');
   const [source, setSource] = useState('');
   const [category, setCategory] = useState('');
@@ -42,10 +42,11 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         setFacts(facts => [...newFact, ...facts]);
       } else {
         throw new Error(
-          `Wrong input format. All fields are required. Double check that source URL includes full path (e.g. 'https://google.com')`
+          `Source URL must be full path (e.g. 'https://google.com')`
         );
       }
     } catch (err) {
+      setFormError(err.message);
       console.error(err.message);
     }
   };
@@ -58,6 +59,7 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         value={text}
         onChange={e => setText(e.target.value)}
         disabled={isUploading}
+        required
       />
       <span>{200 - textLength}</span>
       <input
@@ -66,11 +68,13 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         value={source}
         onChange={e => setSource(e.target.value)}
         disabled={isUploading}
+        required
       />
       <select
         value={category}
         onChange={e => setCategory(e.target.value)}
         disabled={isUploading}
+        required
       >
         <option value="">Choose category:</option>
         {ConfigData.CATEGORIES.map(cat => (

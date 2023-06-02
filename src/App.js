@@ -15,7 +15,8 @@ function App() {
   const [facts, setFacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCategory, setCurrentCategory] = useState('all');
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [formError, setFormError] = useState('');
 
   useEffect(() => {
     const getFacts = async () => {
@@ -35,32 +36,43 @@ function App() {
     getFacts();
   }, [currentCategory]);
 
-  // Conditionally renders components (Loading, RenderError, FactList) based on state
-  const renderComponent = () => {
+  // Conditionally render FactsList if not currently loading or error states are true
+  const renderFactsList = () => {
     if (isLoading) {
       return <Loading />;
     } else if (errorMessage) {
+      return <RenderError errorMessage={errorMessage} />;
+    } else {
+      return <FactList facts={facts} setFacts={setFacts} />;
+    }
+  };
+
+  // Conditionally render Form or render error message when form inputs are invalid
+  const renderForm = () => {
+    if (formError) {
+      alert(formError);
+      setFormError('');
+    } else if (showForm) {
       return (
-        <RenderError
-          errorMessage={errorMessage}
-          setErrorMessage={setErrorMessage}
+        <NewFactForm
+          setFacts={setFacts}
+          setShowForm={setShowForm}
+          setFormError={setFormError}
         />
       );
     } else {
-      return <FactList facts={facts} setFacts={setFacts} />;
+      return null;
     }
   };
 
   return (
     <>
       <Header showForm={showForm} setShowForm={setShowForm} />
-      {showForm ? (
-        <NewFactForm setFacts={setFacts} setShowForm={setShowForm} />
-      ) : null}
+      {renderForm()}
 
       <main className="main">
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {renderComponent()}
+        {renderFactsList()}
       </main>
     </>
   );
