@@ -42,7 +42,7 @@ export default function NewFactForm({ setFacts, setShowForm, setFormError }) {
         setFacts(facts => [...newFact, ...facts]);
       } else {
         throw new Error(
-          `Source URL must be full path (e.g. 'https://google.com')`
+          `Source URL must be full path (e.g. https://example.com)`
         );
       }
     } catch (err) {
