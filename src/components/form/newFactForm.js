@@ -47,7 +47,6 @@ export default function NewFactForm({ setFacts, setShowForm, setFormError }) {
       }
     } catch (err) {
       setFormError(err.message);
-      console.error(err.message);
     }
   };
 
