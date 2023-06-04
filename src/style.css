@@ -112,7 +112,7 @@ h1 {
 
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 }
 
 @media (max-width: 1200px) {
@@ -174,6 +174,13 @@ h1 {
 
 .vote-buttons button:disabled {
     background-color: #44403c;
+}
+
+.post-date {
+    color: #a8a29e;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 ul {
