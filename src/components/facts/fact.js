@@ -56,6 +56,8 @@ export default function Fact({ fact, setFacts }) {
       >
         {fact.category}
       </span>
+      <span className="post-date">6/3/23 8:14pm</span>
+
       <div className="vote-buttons">
         <button
           onClick={() => handleVote('votesInteresting')}
