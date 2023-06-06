@@ -6,6 +6,10 @@ Today I Learned is responsive React web application that was used to begin my Re
 
 <https://todayilearned-emmanuel.netlify.app>
 
+# Built With
+[![My Skills](https://skillicons.dev/icons?i=js,react,html,css,supabase)](https://skillicons.dev)
+
+
 # Getting Started
 
 ### Installation
@@ -34,7 +38,7 @@ Today I Learned is responsive React web application that was used to begin my Re
 
 # TODO
 
-Features I would like to implement:
+Features I would like to implement in the future:
 
 - [x] Add a new React Component that renders an error message on the screen instead of logging it to the console.
   - [x] When users don't have all the required fields when sharing new fact
