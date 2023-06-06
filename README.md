@@ -42,6 +42,6 @@ Features I would like to implement:
   - [x] Error loading facts from database
   - [x] Error uploading facts to database
 - [ ] Add ability to delete a fact from the database
-- [ ] Add date created to facts posts
+- [x] Add date created to facts posts
 - [ ] Add ability to sort facts list by date created
 - [ ] Add ability to sort facts lists by specific votes
