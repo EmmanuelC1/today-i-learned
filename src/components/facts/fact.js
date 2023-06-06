@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import supabase from '../../database/supabase';
 import ConfigData from '../../config/config.json';
+import formatDate from '../../utils/formatDate';
 
 export default function Fact({ fact, setFacts }) {
   const [isUpdating, setIsUpdating] = useState(false);
@@ -56,7 +57,7 @@ export default function Fact({ fact, setFacts }) {
       >
         {fact.category}
       </span>
-      <span className="post-date">6/3/23 8:14pm</span>
+      <span className="post-date">{formatDate(fact.created_at)}</span>
 
       <div className="vote-buttons">
         <button
