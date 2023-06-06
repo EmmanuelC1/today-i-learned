@@ -7,7 +7,7 @@ Today I Learned is responsive React web application that was used to begin my Re
 <https://todayilearned-emmanuel.netlify.app>
 
 # Built With
-[![My Skills](https://skillicons.dev/icons?i=js,react,html,css,supabase)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,react,html,css,supabase,netlify)](https://skillicons.dev)
 
 
 # Getting Started
